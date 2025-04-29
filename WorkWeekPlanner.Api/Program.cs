@@ -13,6 +13,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddServices(appSettings);
 builder.Services.AddRepositories();
+builder.Services.ConfigureAuthentication(appSettings);
 
 var app = builder.Build();
 

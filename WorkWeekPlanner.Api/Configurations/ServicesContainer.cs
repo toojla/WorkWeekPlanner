@@ -13,6 +13,6 @@ public static class ServicesContainer
 
         services.AddHttpClient();
 
-        services.TryAddSingleton<IAuthService, AuthService>();
+        services.TryAddScoped<IAuthService, AuthService>();
     }
 }

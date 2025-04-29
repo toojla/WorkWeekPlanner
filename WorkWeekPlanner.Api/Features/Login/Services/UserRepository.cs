@@ -6,7 +6,7 @@ public class UserRepository : IUserRepository
 {
     public Task<IAppUser?> GetUserByIdAsync(string userName)
     {
-        return new Task<IAppUser>(() => GetUser(userName));
+        return Task.FromResult(GetUser(userName));
     }
 
     private IAppUser? GetUser(string userName)
