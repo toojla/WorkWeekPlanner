@@ -1,6 +1,6 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WorkWeekPlanner.Api.Features.Settings;
 
 namespace WorkWeekPlanner.Api.Configurations;
@@ -19,8 +19,10 @@ public static class AuthContainer
         {
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = false,
-                ValidateAudience = false,
+                ValidateIssuer = true,
+                ValidIssuer = appSettings.AppConfiguration.Issuer,
+                ValidateAudience = true,
+                ValidAudience = appSettings.AppConfiguration.Audience,
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.AppConfiguration.Key)),
                 ValidateLifetime = true

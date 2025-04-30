@@ -37,6 +37,8 @@ public class AuthService(IUserRepository userRepository, IAppSettings appSetting
         var key = Encoding.UTF8.GetBytes(appSettings.AppConfiguration.Key);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
+            Issuer = appSettings.AppConfiguration.Issuer,
+            Audience = appSettings.AppConfiguration.Audience,
             Subject = new ClaimsIdentity(claims),
             Expires = DateTime.UtcNow.AddHours(appSettings.AppConfiguration.ExpiryInHours),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
