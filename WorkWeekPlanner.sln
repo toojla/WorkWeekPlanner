@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35919.96 d17.13
+VisualStudioVersion = 17.13.35919.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWeekPlanner.Api", "WorkWeekPlanner.Api\WorkWeekPlanner.Api.csproj", "{C4A97490-5419-4241-BB3B-182459BF57D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWeekPlanner.Api.Tests", "WorkWeekPlanner.Api.Tests\WorkWeekPlanner.Api.Tests.csproj", "{7A388ECB-A76F-4939-9364-D8607F439601}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWeekPlanner.Shared", "WorkWeekPlanner.Shared\WorkWeekPlanner.Shared.csproj", "{68BF705D-9645-4DF5-8568-0F20ACC192CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7A388ECB-A76F-4939-9364-D8607F439601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A388ECB-A76F-4939-9364-D8607F439601}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A388ECB-A76F-4939-9364-D8607F439601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68BF705D-9645-4DF5-8568-0F20ACC192CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68BF705D-9645-4DF5-8568-0F20ACC192CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68BF705D-9645-4DF5-8568-0F20ACC192CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68BF705D-9645-4DF5-8568-0F20ACC192CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
