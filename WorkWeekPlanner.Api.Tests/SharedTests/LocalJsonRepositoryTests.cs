@@ -1,11 +1,7 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using FluentAssertions;
 using WorkWeekPlanner.Shared;
-using Xunit;
 
-namespace WorkWeekPlanner.Api.Tests;
+namespace WorkWeekPlanner.Api.Tests.SharedTests;
 
 public class LocalJsonRepositoryTests
 {
@@ -37,7 +33,7 @@ public class LocalJsonRepositoryTests
 
         // Assert
         actual.Should().BeTrue();
-        Dispose();
+        RemoveTestArtifacts();
     }
 
     [Fact]
@@ -57,7 +53,7 @@ public class LocalJsonRepositoryTests
         x.Should().NotBeNull();
         //x.Id.Should().Be(1);
         //x.Name.Should().Be("Test");
-        Dispose();
+        RemoveTestArtifacts();
     }
 
     [Fact]
@@ -74,7 +70,7 @@ public class LocalJsonRepositoryTests
 
         // Assert
         actual.Should().BeFalse();
-        Dispose();
+        RemoveTestArtifacts();
     }
 
     [Fact]
@@ -89,7 +85,7 @@ public class LocalJsonRepositoryTests
 
         // Assert
         actual.Should().HaveCount(2);
-        Dispose();
+        RemoveTestArtifacts();
     }
 
     [Fact]
@@ -106,7 +102,7 @@ public class LocalJsonRepositoryTests
             .WithMessage("File name cannot be null or empty.*");
     }
 
-    public void Dispose()
+    private void RemoveTestArtifacts()
     {
         // Remove all files in the temp folder except the test directory
         var testDirectoryFullPath = Path.GetFullPath(_testDirectory);
