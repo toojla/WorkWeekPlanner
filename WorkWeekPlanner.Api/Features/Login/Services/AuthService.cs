@@ -16,7 +16,7 @@ public class AuthService(IUserRepository userRepository, IAppSettings appSetting
         if (user is null) return (false, null);
 
         claims.Add(new Claim(ClaimTypes.Name, user.Username));
-        claims.Add(new Claim("UserId", user.Id));
+        claims.Add(new Claim(AppConstants.UserIdClaim, user.Id));
 
         if (password.Equals(user.Password))
         {
