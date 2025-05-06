@@ -1,4 +1,4 @@
-namespace WorkWeekPlanner.Shared
+namespace WorkWeekPlanner.Shared.Infrastructure.Repositories
 {
     public interface ILocalJsonRepository
     {

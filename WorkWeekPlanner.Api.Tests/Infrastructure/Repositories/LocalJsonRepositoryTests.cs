@@ -1,7 +1,7 @@
 using FluentAssertions;
-using WorkWeekPlanner.Shared;
+using WorkWeekPlanner.Api.Infrastructure.Repositories;
 
-namespace WorkWeekPlanner.Api.Tests.SharedTests;
+namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories;
 
 public class LocalJsonRepositoryTests
 {

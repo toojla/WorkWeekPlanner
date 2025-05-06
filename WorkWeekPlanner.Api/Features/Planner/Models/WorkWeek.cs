@@ -1,13 +1,27 @@
-﻿using WorkWeekPlanner.Api.Infrastructure;
+﻿using System.Text.Json.Serialization;
+using WorkWeekPlanner.Api.Infrastructure;
 
 namespace WorkWeekPlanner.Api.Features.Planner.Models;
 
 public class WorkWeek
 {
-    public string Id { get; }
-    public int Year { get; }
-    public int WeekNumber { get; }
-    public List<WorkDay> Days { get; }
+    public string Id { get; set; }
+    public int Year { get; set; }
+    public int WeekNumber { get; set; }
+    public List<WorkDay> Days { get; set; } = [];
+
+    [JsonConstructor]
+    public WorkWeek()
+    {
+    }
+
+    //public WorkWeek(string id, int year, int weekNumber, List<WorkDay> days)
+    //{
+    //    Id = id;
+    //    Year = year;
+    //    WeekNumber = weekNumber;
+    //    Days = days;
+    //}
 
     public WorkWeek(DateTime forDate)
     {
@@ -18,7 +32,7 @@ public class WorkWeek
             .Select(i =>
             {
                 var dayDate = IsoWeekUtils.FirstDateOfWeekIso8601(Year, WeekNumber).AddDays(i);
-                return new WorkDay(this, dayDate);
+                return new WorkDay(this.Id, dayDate);
             }).ToList();
     }
 

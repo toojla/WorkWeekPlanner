@@ -1,18 +1,24 @@
-﻿namespace WorkWeekPlanner.Api.Features.Planner.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace WorkWeekPlanner.Api.Features.Planner.Models;
 
 public class WorkDay
 {
-    public WorkWeek Week { get; }
+    //public WorkWeek Week { get; }
     public string Id { get; }
-    public DayOfWeek DayOfWeek => Date.DayOfWeek;
+    public int DayOfWeek => (int)Date.DayOfWeek;
     public DateTime Date { get; }
-    public List<WorkChunk> Chunks { get; }
+    public List<WorkChunk?> Chunks { get; } = [];
 
-    public WorkDay(WorkWeek week, DateTime date)
+    [JsonConstructor]
+    public WorkDay()
     {
-        Week = week;
+    }
+
+    public WorkDay(string workWeekId, DateTime date)
+    {
         Date = date;
-        Id = $"{week.Id}-{date:dddd-yyyyMMdd}"; // ex: "2024-W23-Monday-20240512"
+        Id = $"{workWeekId}-{date:dddd-yyyyMMdd}"; // ex: "2024-W23-Monday-20240512"
         Chunks = [];
     }
 

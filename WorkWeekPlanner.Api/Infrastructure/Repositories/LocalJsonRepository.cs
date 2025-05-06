@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace WorkWeekPlanner.Shared;
+namespace WorkWeekPlanner.Api.Infrastructure.Repositories;
 
 public class LocalJsonRepository : ILocalJsonRepository
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using WorkWeekPlanner.Api.Features.Login.Services;
 using WorkWeekPlanner.Api.Features.Settings;
-using WorkWeekPlanner.Shared;
+using WorkWeekPlanner.Api.Infrastructure.Repositories;
 
 namespace WorkWeekPlanner.Api.Configurations;
 
@@ -16,11 +16,16 @@ public static class ServicesContainer
 
         services.TryAddScoped<IAuthService, AuthService>();
 
-        // Register LocalJsonRepository with a directory path
         services.AddSingleton<ILocalJsonRepository>(provider =>
         {
             var directoryPath = Path.Combine("E:\\Temp", "JsonData");
             return new LocalJsonRepository(directoryPath);
+        });
+
+        services.AddSingleton<IWorkWeekRepository>(provider =>
+        {
+            var directoryPath = Path.Combine("E:\\Temp", "WorkWeeks");
+            return new WorkWeekRepository(directoryPath);
         });
     }
 }
