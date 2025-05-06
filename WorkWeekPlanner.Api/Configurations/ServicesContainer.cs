@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using WorkWeekPlanner.Api.Features.Login.Services;
+using WorkWeekPlanner.Api.Features.Planner.Services;
 using WorkWeekPlanner.Api.Features.Settings;
 using WorkWeekPlanner.Api.Infrastructure.Repositories;
 
@@ -27,5 +27,7 @@ public static class ServicesContainer
             var directoryPath = Path.Combine("E:\\Temp", "WorkWeeks");
             return new WorkWeekRepository(directoryPath);
         });
+
+        services.AddSingleton<IWorkWeekFactory, WorkWeekFactory>();
     }
 }

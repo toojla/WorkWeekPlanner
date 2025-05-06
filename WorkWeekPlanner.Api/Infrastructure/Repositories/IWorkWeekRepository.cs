@@ -1,15 +1,12 @@
-using WorkWeekPlanner.Api.Features.Planner.Models;
+namespace WorkWeekPlanner.Api.Infrastructure.Repositories;
 
-namespace WorkWeekPlanner.Api.Infrastructure.Repositories
+public interface IWorkWeekRepository
 {
-    public interface IWorkWeekRepository
-    {
-        Task SaveAsync(WorkWeek workWeek);
+    Task SaveAsync(WorkWeek workWeek);
 
-        Task<WorkWeek?> ReadAsync(int year, int weekNumber);
+    Task<WorkWeek?> ReadAsync(int year, int weekNumber);
 
-        void Delete(int year, int weekNumber);
+    void Delete(int year, int weekNumber);
 
-        IEnumerable<string> ListAllWorkWeeks();
-    }
+    IEnumerable<string> ListAllWorkWeeks();
 }

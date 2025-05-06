@@ -1,6 +1,4 @@
-﻿using WorkWeekPlanner.Api.Features.Login.Models;
-
-namespace WorkWeekPlanner.Api.Features.Login.Services;
+﻿namespace WorkWeekPlanner.Api.Features.Login.Services;
 
 public class UserRepository : IUserRepository
 {

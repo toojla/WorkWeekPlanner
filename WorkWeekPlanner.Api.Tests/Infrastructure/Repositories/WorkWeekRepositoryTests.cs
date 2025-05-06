@@ -1,11 +1,7 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using WorkWeekPlanner.Api.Features.Planner.Models;
+using WorkWeekPlanner.Api.Features.Planner.Services;
 using WorkWeekPlanner.Api.Infrastructure.Repositories;
-using Xunit;
 
 namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories
 {
@@ -13,6 +9,7 @@ namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories
     {
         private readonly string _testDirectory;
         private readonly IWorkWeekRepository _sut;
+        private readonly IWorkWeekFactory _workWeekFactory;
 
         public WorkWeekRepositoryTests()
         {
@@ -23,13 +20,15 @@ namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories
                 Directory.CreateDirectory(_testDirectory);
             }
             _sut = new WorkWeekRepository(_testDirectory);
+            _workWeekFactory = new WorkWeekFactory(_sut);
         }
 
         [Fact]
         public async Task SaveAsync_ShouldCreateWorkWeekFile()
         {
             // Arrange
-            var workWeek = new WorkWeek(new DateTime(2025, 5, 6)); // Example date
+            //var workWeek = new WorkWeek(new DateTime(2025, 5, 6)); // Example date
+            var workWeek = await _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 6));
 
             // Act
             await _sut.SaveAsync(workWeek);
@@ -45,7 +44,8 @@ namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories
         public async Task ReadAsync_ShouldReturnWorkWeekObject()
         {
             // Arrange
-            var workWeek = new WorkWeek(new DateTime(2025, 5, 6));
+            //var workWeek = new WorkWeek(new DateTime(2025, 5, 6));
+            var workWeek = await _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 6));
             await _sut.SaveAsync(workWeek);
 
             // Act
@@ -63,7 +63,8 @@ namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories
         public void Delete_ShouldRemoveWorkWeekDirectory()
         {
             // Arrange
-            var workWeek = new WorkWeek(new DateTime(2025, 5, 6));
+            //var workWeek = new WorkWeek(new DateTime(2025, 5, 6));
+            var workWeek = _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 6)).Result;
             _sut.SaveAsync(workWeek).Wait();
             var weekDirectory = Path.Combine(_testDirectory, workWeek.Year.ToString(), $"Week-{workWeek.WeekNumber}");
 
@@ -80,8 +81,10 @@ namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories
         public void ListAllWorkWeeks_ShouldReturnAllWorkWeekFiles()
         {
             // Arrange
-            var workWeek1 = new WorkWeek(new DateTime(2025, 5, 6));
-            var workWeek2 = new WorkWeek(new DateTime(2025, 5, 13));
+            //var workWeek1 = new WorkWeek(new DateTime(2025, 5, 6));
+            //var workWeek2 = new WorkWeek(new DateTime(2025, 5, 13));
+            var workWeek1 = _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 6)).Result;
+            var workWeek2 = _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 13)).Result;
             _sut.SaveAsync(workWeek1).Wait();
             _sut.SaveAsync(workWeek2).Wait();
 

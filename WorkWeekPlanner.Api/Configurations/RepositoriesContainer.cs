@@ -1,6 +1,4 @@
-﻿using WorkWeekPlanner.Api.Features.Login.Services;
-
-namespace WorkWeekPlanner.Api.Configurations;
+﻿namespace WorkWeekPlanner.Api.Configurations;
 
 public static class RepositoriesContainer
 {

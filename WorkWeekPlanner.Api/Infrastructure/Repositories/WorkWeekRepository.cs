@@ -1,5 +1,4 @@
 using System.Text.Json;
-using WorkWeekPlanner.Api.Features.Planner.Models;
 
 namespace WorkWeekPlanner.Api.Infrastructure.Repositories;
 
