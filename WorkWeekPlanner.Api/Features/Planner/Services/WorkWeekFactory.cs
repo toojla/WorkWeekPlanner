@@ -7,21 +7,7 @@ public class WorkWeekFactory(IWorkWeekRepository workWeekRepository) : IWorkWeek
 {
     public async Task<WorkWeek> GetOrCreateAsync()
     {
-        var (year, weekNumber) = IsoWeekUtils.GetIso8601WeekOfYear(DateTime.Now);
-        // Check if the WorkWeek exists on disk
-        var existingWorkWeek = await workWeekRepository.ReadAsync(year, weekNumber);
-
-        if (existingWorkWeek != null)
-        {
-            // Return the existing WorkWeek
-            return existingWorkWeek;
-        }
-
-        // Create a new WorkWeek for the first date of the specified week
-        var firstDateOfWeek = IsoWeekUtils.FirstDateOfWeekIso8601(year, weekNumber);
-        var workWeek = CreateNewWorkWeek(firstDateOfWeek);
-        await workWeekRepository.SaveAsync(workWeek);
-        return workWeek;
+        return await GetOrCreateAsync(DateTime.Now);
     }
 
     public async Task<WorkWeek> GetOrCreateAsync(DateTime date)
@@ -29,15 +15,10 @@ public class WorkWeekFactory(IWorkWeekRepository workWeekRepository) : IWorkWeek
         var (year, weekNumber) = IsoWeekUtils.GetIso8601WeekOfYear(date);
         var existingWorkWeek = await workWeekRepository.ReadAsync(year, weekNumber);
 
-        if (existingWorkWeek != null)
-        {
-            // Return the existing WorkWeek
-            return existingWorkWeek;
-        }
+        if (existingWorkWeek != null) return existingWorkWeek;
 
         // Create a new WorkWeek for the first date of the specified week
-        var firstDateOfWeek = IsoWeekUtils.FirstDateOfWeekIso8601(year, weekNumber);
-        var workWeek = CreateNewWorkWeek(firstDateOfWeek);
+        var workWeek = CreateNewWorkWeek(IsoWeekUtils.FirstDateOfWeekIso8601(year, weekNumber));
         await workWeekRepository.SaveAsync(workWeek);
         return workWeek;
     }

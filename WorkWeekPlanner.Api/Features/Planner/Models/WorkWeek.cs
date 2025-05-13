@@ -1,7 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using WorkWeekPlanner.Api.Infrastructure;
-
-namespace WorkWeekPlanner.Api.Features.Planner.Models;
+﻿namespace WorkWeekPlanner.Api.Features.Planner.Models;
 
 public class WorkWeek
 {
