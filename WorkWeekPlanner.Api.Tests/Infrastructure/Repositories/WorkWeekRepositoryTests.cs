@@ -1,5 +1,4 @@
 using FluentAssertions;
-using WorkWeekPlanner.Api.Features.Planner.Models;
 using WorkWeekPlanner.Api.Features.Planner.Services;
 using WorkWeekPlanner.Api.Infrastructure.Repositories;
 
@@ -60,12 +59,12 @@ namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories
         }
 
         [Fact]
-        public void Delete_ShouldRemoveWorkWeekDirectory()
+        public async Task Delete_ShouldRemoveWorkWeekDirectory()
         {
             // Arrange
             //var workWeek = new WorkWeek(new DateTime(2025, 5, 6));
-            var workWeek = _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 6)).Result;
-            _sut.SaveAsync(workWeek).Wait();
+            var workWeek = await _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 6));
+            await _sut.SaveAsync(workWeek);
             var weekDirectory = Path.Combine(_testDirectory, workWeek.Year.ToString(), $"Week-{workWeek.WeekNumber}");
 
             // Act
@@ -78,15 +77,15 @@ namespace WorkWeekPlanner.Api.Tests.Infrastructure.Repositories
         }
 
         [Fact]
-        public void ListAllWorkWeeks_ShouldReturnAllWorkWeekFiles()
+        public async Task ListAllWorkWeeks_ShouldReturnAllWorkWeekFiles()
         {
             // Arrange
             //var workWeek1 = new WorkWeek(new DateTime(2025, 5, 6));
             //var workWeek2 = new WorkWeek(new DateTime(2025, 5, 13));
-            var workWeek1 = _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 6)).Result;
-            var workWeek2 = _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 13)).Result;
-            _sut.SaveAsync(workWeek1).Wait();
-            _sut.SaveAsync(workWeek2).Wait();
+            var workWeek1 = await _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 6));
+            var workWeek2 = await _workWeekFactory.GetOrCreateAsync(new DateTime(2025, 5, 13));
+            await _sut.SaveAsync(workWeek1);
+            await _sut.SaveAsync(workWeek2);
 
             // Act
             var actual = _sut.ListAllWorkWeeks();

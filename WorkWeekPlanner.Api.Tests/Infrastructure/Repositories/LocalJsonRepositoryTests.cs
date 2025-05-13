@@ -49,10 +49,7 @@ public class LocalJsonRepositoryTests
 
         var x = actual as object;
         // Assert
-        //x.Should().Be(testObject);
         x.Should().NotBeNull();
-        //x.Id.Should().Be(1);
-        //x.Name.Should().Be("Test");
         RemoveTestArtifacts();
     }
 
