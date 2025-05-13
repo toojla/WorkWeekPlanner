@@ -7,23 +7,5 @@ public class WorkWeek
     public int WeekNumber { get; set; } = 0;
     public List<WorkDay> Days { get; set; } = [];
 
-    //[JsonConstructor]
-    //public WorkWeek()
-    //{
-    //}
-
-    //public WorkWeek(DateTime forDate)
-    //{
-    //    (Year, WeekNumber) = IsoWeekUtils.GetIso8601WeekOfYear(forDate);
-
-    //    Id = $"{Year}-W{WeekNumber}";
-    //    Days = Enumerable.Range(0, 5) // Monday to Friday
-    //        .Select(i =>
-    //        {
-    //            var dayDate = IsoWeekUtils.FirstDateOfWeekIso8601(Year, WeekNumber).AddDays(i);
-    //            return new WorkDay(this.Id, dayDate);
-    //        }).ToList();
-    //}
-
     public WorkDay GetDay(DayOfWeek dow) => Days.FirstOrDefault(d => d.Date.DayOfWeek == dow);
 }
