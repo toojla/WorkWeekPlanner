@@ -1,7 +1,5 @@
-using WorkWeekPlanner.Api.Features.Planner.Models;
 using WorkWeekPlanner.Api.Infrastructure;
 using WorkWeekPlanner.Api.Infrastructure.Repositories;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WorkWeekPlanner.Api.Features.Planner.Services;
 
@@ -21,7 +19,9 @@ public class WorkWeekFactory(IWorkWeekRepository workWeekRepository) : IWorkWeek
 
         // Create a new WorkWeek for the first date of the specified week
         var firstDateOfWeek = IsoWeekUtils.FirstDateOfWeekIso8601(year, weekNumber);
-        return CreateNewWorkWeek(firstDateOfWeek);
+        var workWeek = CreateNewWorkWeek(firstDateOfWeek);
+        await workWeekRepository.SaveAsync(workWeek);
+        return workWeek;
     }
 
     public async Task<WorkWeek> GetOrCreateAsync(DateTime date)
@@ -37,7 +37,9 @@ public class WorkWeekFactory(IWorkWeekRepository workWeekRepository) : IWorkWeek
 
         // Create a new WorkWeek for the first date of the specified week
         var firstDateOfWeek = IsoWeekUtils.FirstDateOfWeekIso8601(year, weekNumber);
-        return CreateNewWorkWeek(firstDateOfWeek);
+        var workWeek = CreateNewWorkWeek(firstDateOfWeek);
+        await workWeekRepository.SaveAsync(workWeek);
+        return workWeek;
     }
 
     private static WorkWeek CreateNewWorkWeek(DateTime forDate)

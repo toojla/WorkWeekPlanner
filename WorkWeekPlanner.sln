@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWeekPlanner.Api", "Work
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWeekPlanner.Api.Tests", "WorkWeekPlanner.Api.Tests\WorkWeekPlanner.Api.Tests.csproj", "{7A388ECB-A76F-4939-9364-D8607F439601}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tryout.Tool", "Tryout.Tool\Tryout.Tool.csproj", "{D2AA9C95-7B1D-4DEE-B345-ADE4979F7E0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{7A388ECB-A76F-4939-9364-D8607F439601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A388ECB-A76F-4939-9364-D8607F439601}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A388ECB-A76F-4939-9364-D8607F439601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2AA9C95-7B1D-4DEE-B345-ADE4979F7E0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2AA9C95-7B1D-4DEE-B345-ADE4979F7E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2AA9C95-7B1D-4DEE-B345-ADE4979F7E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2AA9C95-7B1D-4DEE-B345-ADE4979F7E0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D2AA9C95-7B1D-4DEE-B345-ADE4979F7E0E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA6BE380-8BEB-47F2-A7AC-DEA7D04ECC05}
